@@ -7,7 +7,8 @@ import {
   ScrollView,
 } from 'react-native';
 
-const BookingConfirmedScreen = () => {
+
+const BookingConfirmedScreen = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.iconContainer}>
@@ -38,8 +39,8 @@ const BookingConfirmedScreen = () => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity>
-        <Text style={styles.backText}>Go back to home</Text>
+      <TouchableOpacity  onPress={() => navigation.navigate("Home")}>
+        <Text style={styles.backText}  >Go back to home</Text>
       </TouchableOpacity>
     </ScrollView>
   );

@@ -1,189 +1,163 @@
-import{BackHandler, stylesheet,text,TextInput,view} from 'react-native'
-import react from'react'
-import frontawesome from 'react-native-vector-icons/frontawesome'
-import frontawesome from "react-native-vector-icons/fontisto"
-import { useNavigation } from '@react-navigation/native'
-const SignupScreen = () =>{
-    const navigation = useNavigation()
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import Checkbox from 'expo-checkbox'; 
 
+const SignUpScreen = ({navigation}) => {
+  const [name, setName] = useState('');  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSelected, setSelection] = useState(false); 
 
-
-    const handleregister= () =>{
-      navigation.navigate("Signin")
-
-    }
-    return(
+  return (
     <View style={styles.container}>
-        <View style={styles.topImagecontainer}>
-            <Image source={require('../assets/image/Niramaya.png')} 
-            style={styles.topimage}
-            />
-        </View>
-        <View style={styles.NIRAMAYAcontainer}>
-            <Text style={styles.NIRAMAYA}>NIRAMAYA</Text>
-        </View>
-        <Text style={styles.signIntext}> create a account </Text>
-        <View styles={styles.inputcontainer}>
-            <Frontawesome 
-            name={"user"}
-            size={30} 
-            color={"black"}
-            style={styles.inputcontainer}/>
-            <TextInput style={styles.TextInput} placeholder="username"/>
-        </View>
-        <View style={styles.inputcontainer}> 
-           <Text style={styles.forgotpassword}>forgot your password</Text>
-        </View>
-        <View style={styles.inputcontainer}>
-            <Frontisto
-            name={"lock"}
-            size={24}
-            color={"white"}
-            style={styles.inputicon}/>
-            <TextInput style={styles.TextInput}
-            placeholder="password"/>
-            securetextentry
-        </View> 
-   
-        <View style ={style.signinbuttoncontainer}>
-            <Text style={signin} sign in ></Text>
-            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-                <Text style={styles.buttonText}>
-                Sign in with Facebook
-                </Text>
-            </LinearGradient>
-            <Touchableopacity on press={handleregister}>
-                <Text style={styles.footertext}>
-                or create account using social media
-                </Text>
-            </Touchableopacity>
-        <View style={styles.inputcontainer}>
-                <Fontisto
-                name={"Mail"}
-                size={24}
-                color={"white"}
-                style={styles.inputicon}
-                />
-            <Text style={styles.forgotpassword}>"E-mail"</Text>
-            </View>
-        <View style={styles.inputcontainer}>
-            <Fontisto
-                name={"mobile-alt"}
-                size={24}
-                color={"white"}
-                style={styles.inputicon}
-                />
-            </View>
-            <View>
-                <Text style={styles.forgotpassword}>mobile number</Text>
-                <linearGradient
-                color={["pink","purpel"]}
-                style={styles.linearGradient}>
-                </linearGradient>
-                <Antdesign name={"arrowright"} size={24} color={"white"}/>
-            </View>
-            <View style= {styles.footercontainer}>
-        
-                <Touchableopacity on press={handleregister}>
-                    <Text style={styles.footertext}>
-                    or create account using social media
-                    </Text>
-                </Touchableopacity>
+      {/* Logo Image */}
+      <View>
+        <Image source={require('../assets/image/Niramaya.png')} style={styles.logo} />
+      </View>
 
-            </View>
+      {/* Name Input */}
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your name"
+        value={name}
+        onChangeText={setName}
+      />
 
-        </View>
+      {/* Email Input */}
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your email"
+        value={email}
+        onChangeText={setEmail}
+      />
+
+      {/* Password Input */}
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your password"
+        value={password}
+        secureTextEntry
+        onChangeText={setPassword}
+      />
+
+      {/* Terms & Conditions Checkbox */}
+      <View style={styles.checkboxContainer}>
+        <Checkbox
+          value={isSelected}
+          onValueChange={setSelection}
+        />
+        <Text style={styles.label}>I agree to the <Text style={styles.link}>terms & policy</Text></Text>
+      </View>
+
+      {/* Sign Up Button */}
+      <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <Text style={styles.buttonText} onPress={() => navigation.navigate('Home')}>Signup</Text>
+      </TouchableOpacity>
+
+      {/* OR Section */}
+      <View style={styles.orContainer}>
+        <View style={styles.line} />
+        <Text style={styles.orText}>Or</Text>
+        <View style={styles.line} />
+      </View>
+
+      {/* Social Login Buttons */}
+      <View style={styles.socialButtonsContainer}>
+        <TouchableOpacity style={styles.socialButton} onPress={() => {}}>
+          <Text style={styles.socialButtonText}>Sign in with Google</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton} onPress={() => {}}>
+          <Text style={styles.socialButtonText}>Sign in with Apple</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Sign In Navigation */}
+      <TouchableOpacity onPress={() => navigation.navigate('LoginStack')}>
+        <Text style={styles.signInText}>Have an account? Sign In</Text>
+      </TouchableOpacity>
     </View>
+  );
+};
 
-)};
-const styles = stylesheet.create({
-    container:{
-        backgroundcolor:'white',
-        flex:1,
-    },
-    topImagecontainer:{
-        height:50,
-    },
-    topimage:{
-        width:'100%',
-      height:150,  
-    },
-    NIRAMAYAcontainer:{
-        borderwidth:1,
-    },
-    NIRAMAYAtext:{
-    textalign:'center',
-    frontsize:70,
-    frontweight:'700',
-    color:'black',
-   },
-   createAccountText:{
-    textalign:'center',
-    frontsize: 40,
-    color:'black',
-    frontweight:'400',
-
-   },
-   inputcontainer:{
-    backgroundcolor:'white',
-    flexdirection:'row',
-    borderradius:20,
-    marginhorizontal:40,
-    elevation:10,
-    marginvertical:20,
-    alignterms:'center',
-    height:50,
-        marginleft:12,
-   },
-    inputicon:{
-        marginleft:15,
-        marginright:5,
-    },
-    TextInput:{
-        flex:1,
-
-    },
-    forgotpasswordtext:{
-        color:'white',
-        textalign:'right',
-        width:'80%',
-        frontsize:20,
-    },
-    signinbuttoncontainer:{
-    flexdirection:'row',
-    margintop:120,
-    width:'90%',
-    justifycontent:'flex-end',
-    },
-    signin:{
-        color:'black',
-        frontsize:25,
-        frontweight:'bold',
-    },
-    linearGradient : {
-        height:34,
-        width:56,
-        borderradius:17,
-        alignterms:'center',
-        justifycontent:'center',
-        marginhorizontal:10,
-    },
-    footertext : {
-        color:'black',
-        textalign:'center',
-        frontsize:16,
-    },
-    leftvectorcontainer:{
-        position:'absolute',
-        bottom:0,
-        left:0,
-    },
-    leftvectorimage:{
-        height:350,
-        width:0,
-    },
-
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f7f7f7',
+  },
+  logo: {
+    width: 200,  // Adjust the size of the logo
+    height: 100,
+    alignSelf: 'center',
+    marginBottom: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  label: {
+    marginLeft: 8,
+  },
+  link: {
+    color: '#2e64e5',
+  },
+  button: {
+    backgroundColor: '#4CAF50',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  orContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#ccc',
+  },
+  orText: {
+    marginHorizontal: 10,
+    color: '#777',
+  },
+  socialButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  socialButton: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginHorizontal: 5,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  socialButtonText: {
+    color: '#000',
+  },
+  signInText: {
+    textAlign: 'center',
+    color: '#2e64e5',
+  },
 });
-export default SignupScreen;
- 
+
+export default SignUpScreen;

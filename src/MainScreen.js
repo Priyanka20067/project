@@ -6,12 +6,12 @@ const MainScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.topRightContainer}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={require('../../assets/image/Icons.png')} style={styles.arrow} />
+          <Image source={require('../assets/image/Icons.png')} style={styles.arrow} />
         </TouchableOpacity>
         <Text style={styles.skip}>Skip</Text>
       </View>
       <View style={styles.card}>
-        <Image source={require('../../assets/image/Rectangle 13.png')} style={styles.image} />
+        <Image source={require('../assets/image/Rectangle 13.png')} style={styles.image} />
         <Text style={styles.heading}>Unlock effortless wellbeing</Text>
         <Text style={styles.description}>
           Experience expert care, hassle-free logistics, and a healthier future.
@@ -26,7 +26,7 @@ const MainScreen = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={styles.arrowButton}
-          onPress={() => navigation.navigate('AppScreen')}
+          onPress={() => navigation.navigate('Join')}
         >
           <Text style={styles.nextText}>→</Text>
         </TouchableOpacity>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     },
   position:{
     position:'absolute',
-    bottom:91,
+    bottom:54,
     
   },
   image: {

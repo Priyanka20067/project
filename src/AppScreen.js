@@ -19,7 +19,7 @@ const AppScreen = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.topRightContainer}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={require('../../assets/image/Icons.png')} style={styles.arrow} />
+          <Image source={require('../assets/image/Icons.png')} style={styles.arrow} />
         </TouchableOpacity>
         <Text style={styles.skip}>Skip</Text>
       </View>
@@ -100,20 +100,20 @@ skip: {
 },
   card: {
     backgroundColor:'#fff',
-    paddingTop:90,
+    paddingTop:80,
     
     borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf:'center',
     width: 320,
-    height:545,
+    height:560,
     gap:16,
     position:'relative',
   },
 position:{
   position:'absolute',
-  bottom:83,
+  bottom:46,
   
 },
 title: {

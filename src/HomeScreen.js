@@ -1,103 +1,258 @@
 import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {  ScrollView,View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons'; 
+import Icon from "react-native-vector-icons/Ionicons";
 
-const HomeScreen = () => {
+
+export default function HomeScreen({ navigation }) {
   return (
+    <View>
     <ScrollView style={styles.container}>
-      {/* Greeting */}
-      <View style={styles.header}>
-        <Image style={styles.profileImage} source={{ uri: 'https://via.placeholder.com/50' }} />
-        <Text style={styles.greeting}>Hi,</Text>
-        <Text style={styles.username}>Person One</Text>
-        <Icon name="time-outline" size={24} style={styles.icon} />
-      </View>
+            {/* Header Section */}
+            <View style={styles.header}>
+              <Image
+                source={require('../assets/image/profile.png')}
+                style={styles.avatar}
+              />
+              <View style={styles.headerText}>
+                <Text style={styles.greeting}>Hi,</Text>
+                <Text style={styles.username}>Person One</Text>
+              </View>
+              <TouchableOpacity style={styles.iconButton}>
+                <Ionicons name="document-text-outline" size={24} color="green" />
+              </TouchableOpacity>
+            </View>
 
-      {/* Search Bar */}
-      <View style={styles.searchBar}>
-        <Icon name="search-outline" size={20} />
-        <TextInput placeholder="Search anything" style={styles.searchInput} />
-      </View>
+            {/* Search Bar */}
+            <View style={styles.searchBar}>
+              <Ionicons name="search-outline" size={20} color="gray" style={styles.searchIcon} />
+              <TextInput placeholder="Search anything" style={styles.searchInput} />
+            </View>
 
-      {/* Appointment Banner */}
-      <TouchableOpacity style={styles.banner}>
-        <Image style={styles.bannerImage} source={{ uri: 'https://via.placeholder.com/100x100' }} />
-        <Text style={styles.bannerText}>Looking for desired doctor?</Text>
-        <TouchableOpacity style={styles.bannerButton}>
-          <Text style={styles.bannerButtonText}>Book an appointment</Text>
-        </TouchableOpacity>
-      </TouchableOpacity>
+            {/* Appointment Banner */}
+            <View style={styles.banner}>
+              <View style={styles.sub}>
+                <Image
+                  source={require('../assets/image/Mdoc.png')}
+                  style={styles.bannerImage}
+                />
+              </View>
+              <View style={styles.bannerText}>
+                <Text style={styles.headerText}>Looking for desired doctor?</Text>
+                <TouchableOpacity>
+                  <Text style={styles.appointmentButton}>Book an appointment</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
 
-      {/* Categories */}
-      <View>
-        <Text style={styles.sectionTitle}>Categories</Text>
-        <View style={styles.categories}>
-          {['Neurologist', 'Cardiologist', 'Dermatologist', 'Dentist'].map((item, index) => (
-            <TouchableOpacity key={index} style={styles.categoryItem}>
-              <Icon name="heart-outline" size={24} color="green" />
-              <Text>{item}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </View>
+            {/* Categories Section */}
+            <View style={styles.sectionHeader}>
+              <Text style={styles.username}>Categories</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
+                <Text style={{ color: "green" }}>See All</Text>
+              </TouchableOpacity>
+            </View>
 
-      {/* Services */}
-      <View>
-        <Text style={styles.sectionTitle}>Services</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {['Locate & Book Cabs', 'Book Your First Appointment'].map((item, index) => (
-            <TouchableOpacity key={index} style={styles.serviceCard}>
-              <Image style={styles.serviceImage} source={{ uri: 'https://via.placeholder.com/100x100' }} />
-              <Text>{item}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
+            <View style={styles.categories}>
+              {[
+                { name: 'Neurologist', icon: 'brain' },
+                { name: 'Cardiologist', icon: 'heart' },
+                { name: 'Dermatologist', icon: 'user-alt' },
+                { name: 'Dentist', icon: 'tooth' },
+              ].map((category, index) => (
+                <View key={index} style={styles.category}>
+                  <FontAwesome5 name={category.icon} size={24} color="green" />
+                  <Text style={styles.categoryText}>{category.name}</Text>
+                </View>
+              ))}
+            </View>
+             
+            <View style={styles.sectionHeader}>
+              <Text style={styles.username} >Services</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Services")}>
+                 <Text style={{ color: "green" }}>See All</Text>
+              </TouchableOpacity>
+
+            </View>
+            <View style={styles.services}>
+              {[
+                { name: ' ⭐ ⭐ ⭐ ⭐ ⭐ Locate & Book Cabs', image: 'https://i.imgur.com/c9WVtb8.png' ,
+                icon: require('../assets/image/Group 5.png')},
+                { name: '⭐ ⭐ ⭐ ⭐ ⭐ Book Your First Appointment', image: 'https://i.imgur.com/8oHwDwY.png', icon: require('../assets/image/Group 5.png') },
+              ].map((service, index) => (
+                <View key={index} style={styles.service}>
+                  <Image source={{ uri: service.image }} style={styles.serviceImage} />
+                  <Text style={styles.serviceText}>{service.name}</Text>
+                </View>
+              ))}
+            </View>
+              <View style={styles.navbar}>
+                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home')}>
+                      <Icon name="home-outline" size={24} color="#333" />
+                      <Text style={styles.navLabel}>Home</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('BookingStack')}>
+                      <Icon name="bookmark-outline" size={24} color="#333" />
+                      <Text style={styles.navLabel}>Bookings</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('MapStack')}>
+                      <Icon name="map-outline" size={24} color="#333" />
+                      <Text style={styles.navLabel}>Maps</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Chat')}>
+                      <Icon name="chatbubble-outline" size={24} color="#333" />
+                      <Text style={styles.navLabel}>Chat</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Profile')}>
+                      <Icon name="person-outline" size={24} color="#333" />
+                      <Text style={styles.navLabel}>Profile</Text>
+                    </TouchableOpacity>
+                  </View>
+   
     </ScrollView>
-  );
-};
-
-const BookingsScreen = () => <View style={styles.screen}><Text>Bookings Screen</Text></View>;
-const MapsScreen = () => <View style={styles.screen}><Text>Maps Screen</Text></View>;
-const ChatScreen = () => <View style={styles.screen}><Text>Chat Screen</Text></View>;
-const ProfileScreen = () => <View style={styles.screen}><Text>Profile Screen</Text></View>;
-
-const Tab = createBottomTabNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarIcon: () => <Icon name="home-outline" size={24} /> }} />
-        <Tab.Screen name="Bookings" component={BookingsScreen} options={{ tabBarIcon: () => <Icon name="calendar-outline" size={24} /> }} />
-        <Tab.Screen name="Maps" component={MapsScreen} options={{ tabBarIcon: () => <Icon name="map-outline" size={24} /> }} />
-        <Tab.Screen name="Chat" component={ChatScreen} options={{ tabBarIcon: () => <Icon name="chatbubble-outline" size={24} /> }} />
-        <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarIcon: () => <Icon name="person-outline" size={24} /> }} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    </View>
   );
 }
 
+
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: '#fff' },
-  header: { flexDirection: 'row', alignItems: 'center', marginBottom: 20 },
-  profileImage: { width: 50, height: 50, borderRadius: 25, marginRight: 10 },
-  greeting: { fontSize: 16, color: '#000' },
-  username: { fontSize: 16, fontWeight: 'bold', marginLeft: 5 },
-  icon: { marginLeft: 'auto' },
-  searchBar: { flexDirection: 'row', alignItems: 'center', padding: 10, borderWidth: 1, borderRadius: 10, marginBottom: 20 },
-  searchInput: { flex: 1, marginLeft: 10 },
-  banner: { backgroundColor: '#d9fdd3', padding: 20, borderRadius: 10, flexDirection: 'row', alignItems: 'center', marginBottom: 20 },
-  bannerImage: { width: 50, height: 50, borderRadius: 25, marginRight: 20 },
-  bannerText: { fontSize: 16, flex: 1 },
-  bannerButton: { backgroundColor: '#4caf50', padding: 10, borderRadius: 5 },
-  bannerButtonText: { color: '#fff', textAlign: 'center' },
-  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10 },
-  categories: { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 20 },
-  categoryItem: { alignItems: 'center' },
-  serviceCard: { width: 150, padding: 10, backgroundColor: '#f0f0f0', borderRadius: 10, marginRight: 10 },
-  serviceImage: { width: '100%', height: 80, borderRadius: 10 },
-  screen: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+    container: {
+    padding: 16,
+    backgroundColor: '#fff',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+  },
+  headerText: {
+    marginLeft: 8,
+    flexDirection: 'row',
+  },
+  greeting: {
+    fontSize: 16,
+  },
+  username: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 4,
+  },
+  iconButton: {
+    marginLeft: 'auto',
+  },
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f2f2f2',
+    padding: 8,
+    borderRadius: 8,
+    marginBottom: 16,
+  },
+  searchIcon: {
+    marginRight: 8,
+    color: 'gray',
+  },
+  searchInput: {
+    flex: 1,
+    borderWidth: 0,
+  },
+  banner: {
+    flexDirection: 'row',
+    backgroundColor: '#679400',
+    padding:10,
+    paddingBottom:0,
+    borderRadius: 8,
+    marginBottom: 16,
+  },
+  sub: {
+    position:'relative',
+  },
+  headerText:{
+    fontSize:13,
+  },
+  bannerImage: {
+    width: 300,
+    height: 150,
+    borderRadius: 8,
+  },
+  bannerText: {
+    right:10,
+    top:30,
+    justifyContent: 'center',
+    position:'absolute'
+  },
+  appointmentButton: {
+    backgroundColor: '#fff',
+    paddingVertical: 9,
+    paddingHorizontal:5,
+    borderRadius: 8,
+    marginTop: 8,
+    textAlign: 'center',
+    fontSize:10.59,
+  },
+  sectionHeader: {
+    fontSize: 500,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+    marginTop: 6,
+  },
+  categories: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  category: {
+    alignItems: 'center',
+  },
+  categoryText: {
+    marginTop: 8,
+    fontSize: 14,
+  },
+  services: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  service: {
+    backgroundColor: '#f2f2f2',
+    borderRadius: 8,
+    overflow: 'hidden',
+    width: '48%',
+   
+  },
+  serviceImage: {
+    width: '100%',
+    height: 100,
+  },
+  serviceText: {
+    padding: 8,
+    fontSize: 14,
+    fontWeight:'bold',
+  },
+  bottomNavigation: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingVertical: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+  },
+ navbar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingVertical: 10,
+    backgroundColor: "#FFF",
+    borderTopWidth: 1,
+    borderTopColor: "#E0E0E0",
+    marginTop:60,
+    flexShrink:0,
+  },
+  navItem: { alignItems: "center" },
+  navLabel: { fontSize: 12, color: "#333" },
 });

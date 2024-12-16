@@ -46,23 +46,23 @@ const ServiceCard = ({ service }) => {
   return (
     <View style={styles.card}>
       <View style={styles.imageContainer}>
-        {/* Like Button without background */}
+
         <TouchableOpacity
           style={styles.likeButton}
           onPress={() => setLiked(!liked)}
         >
           <Icon
             name={liked ? 'favorite' : 'favorite-border'}
-            size={32} // Increased the size of the icon
-            color="#FF0000" // Red color
+            size={32} 
+            color="#FF0000" 
           />
         </TouchableOpacity>
 
-        {/* Image */}
+
         <Image source={{ uri: service.image }} style={styles.image} />
       </View>
 
-      {/* Ratings (Below the Image, Left-Aligned) */}
+
       <View style={styles.ratingContainer}>
         {[...Array(5)].map((_, index) => (
           <Icon
@@ -74,7 +74,7 @@ const ServiceCard = ({ service }) => {
         ))}
       </View>
 
-      {/* Content */}
+
       <View style={styles.cardContent}>
         <Text style={styles.title}>{service.title}</Text>
         <TouchableOpacity style={styles.iconButton}>
@@ -88,25 +88,20 @@ const ServiceCard = ({ service }) => {
 const ServicesScreen = () => {
   return (
     <View style={styles.container}>
-      {/* Header: Back Button and Search Icon */}
+
       <View style={styles.headerContainer}>
-        <TouchableOpacity style={styles.backButton}>
-          <Icon name="arrow-back" size={32} color="black" />
-        </TouchableOpacity>
+
         <TouchableOpacity style={styles.searchIcon}>
           <Icon name="search" size={32} color="black" />
         </TouchableOpacity>
       </View>
 
-      {/* Title */}
-      <Text style={styles.header}>Services</Text>
-
-      {/* Service List */}
       <FlatList
         data={services}
         renderItem={({ item }) => <ServiceCard service={item} />}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
+        
       />
     </View>
   );
@@ -148,24 +143,23 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     position: 'relative',
-
   },
   image: {
-    width: 392,
-    height: 160,
+    width: '100%',
+    height: 150,
   },
   likeButton: {
     position: 'absolute',
     top: 10,
-    right: 10, // Positioned on the right side
+    right: 10, 
     padding: 6,
     elevation: 3,
-    zIndex: 1, // Ensure that the like button stays on top of the image
+    zIndex: 1, 
   },
   ratingContainer: {
     flexDirection: 'row',
     marginTop: 8,
-    paddingLeft: 16, // Positioned to the left side
+    paddingLeft: 16, 
   },
   cardContent: {
     flexDirection: 'row',
@@ -178,7 +172,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   iconButton: {
-    backgroundColor: '#4CAF50', // Green color matching your design
+    backgroundColor: '#4CAF50', 
     padding: 8,
     borderRadius: 16,
   },

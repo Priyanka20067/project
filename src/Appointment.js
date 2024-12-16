@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
-const HomeScreen = () => {
+const Appointment = () => {
   return (
     <ScrollView style={styles.container}>
       {/* Greeting */}

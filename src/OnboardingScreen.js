@@ -7,7 +7,7 @@ const OnboardingScreen = ({ navigation }) => {
       <View style={styles.card}>
         <Text style={styles.title}>Welcome to</Text>
         <View style={styles.flexDirection}>
-          <Image source={require('../../assets/image/Logo.png')} style={styles.Image} />
+          <Image source={require('../assets/image/Logo.png')} style={styles.Image} />
           <Text style={styles.brandName}>Niramaya</Text>
         </View>
         <Text style={styles.subtitle}>
@@ -23,7 +23,7 @@ const OnboardingScreen = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={styles.arrowButton}
-          onPress={() => navigation.navigate('Join')}
+          onPress={() => navigation.navigate('AppScreen')}
         >
           <Text style={styles.nextText}>→</Text>
         </TouchableOpacity>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     position:{
       position:'absolute',
-      bottom:125,
+      bottom:105,
       
     },
     flexDirection:{

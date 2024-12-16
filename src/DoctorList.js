@@ -35,7 +35,7 @@ const DoctorList = ({ navigation }) => {
       </View>
       <View style={styles.action}>
         <Text style={styles.fee}>{item.fee}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('DoctorProfile')}>
+        <TouchableOpacity onPress={() => navigation.navigate('DoctorStack')}>
           <Text style={styles.bookButtonText}>Book Now</Text>
         </TouchableOpacity>
       </View>
@@ -47,7 +47,7 @@ const DoctorList = ({ navigation }) => {
       <ScrollView style={styles.scrollContainer}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="arrow-back-outline" size={24} color="#333" />
           </TouchableOpacity>
           <Text style={styles.title}>Find Your Doctor</Text>
@@ -91,11 +91,11 @@ const DoctorList = ({ navigation }) => {
           <Icon name="home-outline" size={24} color="#333" />
           <Text style={styles.navLabel}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Bookings')}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('BookingStack')}>
           <Icon name="bookmark-outline" size={24} color="#333" />
           <Text style={styles.navLabel}>Bookings</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Maps')}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('MapStack')}>
           <Icon name="map-outline" size={24} color="#333" />
           <Text style={styles.navLabel}>Maps</Text>
         </TouchableOpacity>

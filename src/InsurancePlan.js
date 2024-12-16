@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 
-const InsurancePlan = () => {
+const InsurancePlan = ({navigation}) => {
   const [selectedPlan, setSelectedPlan] = useState('');
 
   const insurancePlans = [
@@ -26,7 +26,7 @@ const InsurancePlan = () => {
     <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="arrow-back-outline" size={24} color="#333" />
           </TouchableOpacity>
           <TouchableOpacity>
@@ -55,7 +55,7 @@ const InsurancePlan = () => {
         </TouchableOpacity>
       ))}
 
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+      <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('InsurancePlanStack')}>
         <Text style={styles.submitButtonText}>Submit</Text>
       </TouchableOpacity>
     </View>

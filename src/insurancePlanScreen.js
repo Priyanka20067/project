@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 
-const InsurancePlanScreen = () => {
+const InsurancePlanScreen = ({navigation}) => {
   const hospitals = [
     {
       id: '1',
@@ -61,7 +61,7 @@ const InsurancePlanScreen = () => {
                 <Text style={styles.logo}>HDFC ERGO</Text>
             </View>
             
-            <TouchableOpacity style={styles.bookNowButton}>
+            <TouchableOpacity style={styles.bookNowButton} onPress={() => navigation.navigate('InsuranceStack')}>
                 <Text style={styles.bookNowText}>Book Now</Text>
             </TouchableOpacity>
        
@@ -79,7 +79,7 @@ const InsurancePlanScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon name="arrow-back-outline" size={24} color="#333" />
         </TouchableOpacity>
         <Text style={styles.title}>Insurance Plan</Text>
@@ -106,23 +106,28 @@ const InsurancePlanScreen = () => {
         renderItem={renderHospital}
         keyExtractor={(item) => item.id}
       />
-      <View style={styles.bottomNav}>
-        <TouchableOpacity>
-          <Text>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.activeTab}>Bookings</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Maps</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Chat</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Profile</Text>
-        </TouchableOpacity>
-      </View>
+       <View style={styles.navbar}>
+              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home')}>
+                <Icon name="home-outline" size={24} color="#333" />
+                <Text style={styles.navLabel}>Home</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('BookingStack')}>
+                <Icon name="bookmark-outline" size={24} color="#333" />
+                <Text style={styles.navLabel}>Bookings</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Maps')}>
+                <Icon name="map-outline" size={24} color="#333" />
+                <Text style={styles.navLabel}>Maps</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Chat')}>
+                <Icon name="chatbubble-outline" size={24} color="#333" />
+                <Text style={styles.navLabel}>Chat</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Profile')}>
+                <Icon name="person-outline" size={24} color="#333" />
+                <Text style={styles.navLabel}>Profile</Text>
+              </TouchableOpacity>
+            </View>
     </View>
   );
 };
@@ -243,15 +248,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
   },
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 15,
-    backgroundColor: '#f9f9f9',
+  // Bottom Navigation Styles
+  navbar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingVertical: 10,
+    backgroundColor: "#FFF",
+    borderTopWidth: 1,
+    borderTopColor: "#E0E0E0",
   },
-  activeTab: {
-    fontWeight: 'bold',
-    color: '#4CAF50',
-  },
+  navItem: { alignItems: "center" },
+  navLabel: { fontSize: 12, color: "#333" },
 });
 export default InsurancePlanScreen;

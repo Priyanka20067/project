@@ -6,19 +6,19 @@ const JoinScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.topRightContainer}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={require('../../assets/image/Icons.png')} style={styles.arrow} />
+          <Image source={require('../assets/image/Icons.png')} style={styles.arrow} />
         </TouchableOpacity>
         <Text style={styles.skip}>Skip</Text>
       </View>
       <View style={styles.card}>
-        <Image source={require('../../assets/image/Rectangle 12.png')} style={styles.image} />
+        <Image source={require('../assets/image/Rectangle 12.png')} style={styles.image} />
         <Text style={styles.heading}>Kickstart Your Journey</Text>
         <Text style={styles.headingsub}>with Us</Text>
         <Text style={styles.text}>
           New to Niramaya? <Text style={styles.link}>Join Now</Text>
         </Text>
         <Text style={styles.textsub}>
-          Already a user? <Text style={styles.link}>Sign In</Text>
+          Already a user? <Text style={styles.link}  onPress={() => navigation.navigate('LoginStack')}>Sign In</Text>
         </Text>
       </View>
       <View style={styles.position}>
@@ -30,7 +30,7 @@ const JoinScreen = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={styles.arrowButton}
-          onPress={() => navigation.navigate('Main')}
+          onPress={() => navigation.navigate('Home')}
         >
           <Text style={styles.nextText}>→</Text>
         </TouchableOpacity>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
   position:{
     position:'absolute',
-    bottom:91,
+    bottom:54,
     
   },
   title: {
